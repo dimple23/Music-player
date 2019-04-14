@@ -1,0 +1,18 @@
+body {
+    background: url("../image/bgMainPage3.jpg");
+    background-size: 100%;
+}
+
+header {
+    opacity: 0;
+    color: white;
+}
+
+h1 {
+    color: whitesmoke;
+}
+.myAuth {
+    margin:0 auto;
+    width: 50%;
+}
+

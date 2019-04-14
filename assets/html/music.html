@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="../css/music.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<title>Music Player</title>
+</head>
+<body>
+    <div class="header">
+        <h2>Music Player</h2>
+      </div>
+      
+      <div class="row">
+        <div class="leftcolumn ">
+          <div class="card  ">
+            <div id="Musiclist"></div>
+            <h2>Music play list</h2>  
+          <div  id="playlistCard"   class="card   ">
+              <img src="../image/musiccard6.gif" class=" card-img-top musicCardImage " alt="musicplaylist">
+                 <div class="card-body">
+                    <h5 class="card-title"></h5>
+                        <div id="playlist-info" class="list-group list-group-flush"></div>
+                            <table class="table">
+                              <thead>
+                               <tr>
+                                 <th scope="col"> Music Playlist  </th>
+                                  </tr>
+                              </thead>
+                            <tbody>
+                            <tr>
+                            <th scope="row">1
+                                <button id="musicbutton" type="button" class="btn btn-primary"   aria-hidden="true"> <i class="fas fa-play-circle"></i></button>
+                                <button id="lyricButton" type="button" class="btn btn-primary "   aria-hidden="true"><i class="fas fa-music"></i></button>
+                                
+                            </th>
+                          </tr>
+                          <tr>
+                            <th>
+                                <button id="musicbutton" type="button" class="btn btn-primary"   aria-hidden="true"> <i class="fas fa-play-circle"></i></button>
+                                <button id="lyricButton" type="button" class="btn btn-primary "   aria-hidden="true"><i class="fas fa-music"></i></button>
+                                
+                              </th>
+                          </tr>
+                    </tbody>
+               </table>
+              </div>
+        </div>
+      </div>
+    </div>
+        <div class="rightcolumn">
+          <div class="card weatherMood  musicPlayerCard">
+            <h2>Weather Mood</h2>
+            <div id="weatherMood"></div>
+            <p>Weather</p>
+          </div>
+          <div class="card videoCard musicPlayerCard  ">
+            <div id="videoSong"></div>
+            <div class="card-body"></div>
+            <div id="youtubesearch" ></div>
+            <h3>Video</h3>
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/pRpeEdMmmQ0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/L0MK7qz13bU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/kffacxfA7G4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+       
+     
+         <!---- <div class="card">
+            <h3></h3>
+            <p>.</p>
+          </div>
+  </div>---->
+        </div>
+      <div class="footer">
+        <h2>Footer</h2>
+      </div>
+      <script src="https://apis.google.com/js/api.js"></script>
+      <!---<script src="../javascript/music.js"></script>--->
+      <script src="../javascript/YouTubeSearch.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
