@@ -37,9 +37,14 @@ body{
   background-color: rgba(192, 175, 131, 0.51);
   margin-top:20px;
 }
+.card{
+  background-image: url(../image/mcard1.jpeg)
+}
 @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn { 
+  .leftcolumn, .rightcolumn ,.form-control{ 
     width: 100%;
     padding: 0;
   }
+
+  
 }
