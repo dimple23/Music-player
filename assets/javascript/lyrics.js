@@ -11,7 +11,7 @@ function searchLyrics(song, artist) {
  var queryURL = `https://api.lyrics.ovh/v1/"${artist}"/"${song}"`;
   //https://api.lyrics.ovh/v1/"Beyonce"/"I was here"
   console.log(queryURL);
-
+s
  $.ajax({
   url: queryURL,
   method: "GET"
