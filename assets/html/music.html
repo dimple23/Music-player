@@ -49,7 +49,7 @@
         <div class="col-5 leftcolumn">
         <!-- Start left column Div -->
 
-            <div class="card" id="playlistCard">
+            <div class="card my-4 scroll " id="playlistCard">
 
                 <img class="card-header card-img-top musicCardImage" src="../image/musiccard6.gif" alt="musicplaylist" height="150px">
 
@@ -57,9 +57,9 @@
                     <!-- <h5 class="card-title"></h5> -->
                     <div id="playlist-info" class="list-group list-group-flush"></div>
 
-                    <table class="table table-hover">
+                    <table class="table table-hover table-striped">
                         <thead>
-                            <tr><th scope="col">Video Playlist</th></tr>
+                            <tr><th scope="col"><h1>Video Playlist</h1></th></tr>
                         </thead>
                         <tbody>
                             <!-- content will be written in music.js file -->
@@ -75,31 +75,71 @@
         <!-- End left column Div -->
         </div>
 
-
+    
     <!-- ------------------------------------------------------------------------------------------ -->
     
         <div class="col-6 rightcolumn">
         <!-- Start of 'rightcolumn' div  -->
 
-            <!-- YouTube Video div -->
-            <div class="p-3 musicPlayerCard" id="myVideo"></div>
-            
+            <div class="row">
+                <!-- YouTube Video div -->
+                <div class="p-3 musicPlayerCard" id="myVideo"></div>
+            </div>
 
-            <div class="card musicPlayerCard" id="getRecommendedWeatherSongs">
-                <h2>Weather Mood</h2>
-                <div id="weatherMood"></div>
-                <p id="weatherText">Weather</p>
+            <div class="row">
+                <div class="p-3 lyricPlayerCard" id="showLyrics"></div>
             </div>
 
         <!-- End of 'rightcolumn' div  -->
         </div>
 
     </main>
+    
 
     <!-- ------------------------------------------------------------------------------------------ -->
+    <br><br><br><br><br><br><br><br>
+  
+    <footer class="container-fluid p-3 " id="Weatherfooter">
+        <div class=" musicPlayerCard" id="getRecommendedWeatherSongs">
+            <button id="WeatherButton"><h2>Weather Mood</h2>
+            <div id="weatherMood"></div>
+            <p id="weatherText">Weather</p></button>
+        </div><br><br>
+        <div class="row">
+            <div id="img" class="col-sm-2">
+                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
 
-    <footer class="container-fluid">
-        <h2>Footer</h2>
+                <img src="beyonce.jpg" />
+                </button>
+
+            </div>
+            <div id="img" class="col-sm-2">
+                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
+                    <img src="jlo.jpg" />
+                </button>
+            </div>
+            <div id="img" class="col-sm-2">
+                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
+                    <img src="ariana_grande.jpg" />
+                </button>
+            </div>
+            <div id="img" class="col-sm-2">
+                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
+                    <img src="Sam-Smith-Normani.jpg" />
+                </button>
+            </div>
+            <div id="img" class="col-sm-2">
+                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
+
+                    <img src="beyonce.jpg" />
+                </button>
+
+            </div>
+            <div id="img" class="col-sm-2">
+                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
+                    <img src="jlo.jpg" />
+                </button>
+            </div>
     </footer>
 
 

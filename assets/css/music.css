@@ -2,6 +2,11 @@ body{
   padding: 20px;
   background-image: url("../image/bgMainPage2.jpg");
  }
+ h1{
+   color: rgb(209, 209, 72);
+   font-family: 'Berkshire Swash', cursive;
+
+ }
  
  header {
   /* padding : 30px; */
@@ -30,7 +35,11 @@ body{
   border-radius: 30px;
   height: 70px;
  }
- 
+ #Weatherfooter{
+   float: bottom;
+   margin-bottom:20px;
+  
+ }
  
  .leftcolumn{
   float: left;
@@ -45,16 +54,46 @@ body{
  
  
  .card{
-  background-color: rgba(192, 175, 131, 0.51);
   padding: 20px;
   margin-top: 20px;
+  color: brown;
+  background-color:rgba(192, 175, 131, 0.51);
+ } 
+ .lyricsimg{
+    background-image: url(../image/lyrics.jpg);
  }
  
  .videocard{
   height: 60%;
  }
- 
- 
+ #WeatherButton{
+  border-radius: 30px;
+  height: 70px;
+  width: 90%;
+  background-color: rgba(219, 157, 13, 0.918);
+  color:brown;
+ }
+ #lyrics{
+   float: right;
+ }
+
+ #playlistCard{
+  border-radius: 30px;
+  max-height:500px;
+  background-color: rgba(233, 185, 64, 0.384);
+  color:brown;
+
+ }
+ .scroll {
+  max-height: 100px;
+  overflow-y: auto;
+}
+tbody {
+  height: 500px !important;
+  overflow: scroll;
+  display:block;
+} 
+
  @media screen and (max-width: 800px) {
   .leftcolumn, .rightcolumn {
     width: 100%;
