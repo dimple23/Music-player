@@ -1,4 +1,4 @@
-//Initialize Firebase
+/ Initialize Firebase
     var config = {
         apiKey: "AIzaSyAAiQ_zDAg8V89Mq1Ea1lqXsphzI3YPscQ",
         authDomain: "muvutv.firebaseapp.com",
@@ -12,29 +12,16 @@
     var database=firebase.database();
 
     //------------------------------------------------------------------------------------------------------
+    
+    //GLOBAL variables declared/defined here:
 
     //Variable to store global data 'username'
     var username = "";
 
-    //Default playlist
-    var playlist = {
-        username: "myList",
-        songsObj: [
-            {   //songsObj[0]
-                songName: "My Heart Will Go On",
-                artist: "Céline Dion"
-            },
-            {   //songsObj[1]
-                songName: "Paradise",
-                artist: "Coldplay"
-            },
-            {   //songsObj[2]
-                songName: "Waka Waka",
-                artist: "Shakira"
-            }]
-    };
+    //Variable that hold song id of currently playing song
+    var currentVideoId = "";
 
-     //------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------
 
     $(document).ready(function () {
 
@@ -43,14 +30,15 @@
         console.log("Username in music.js from sessionstorage-> " + username);
         $("#username-text").text(username);
 
-        
         /************************************************************************************************
          * OnClick event listner that captures song and artist searched by the user
          ************************************************************************************************/
 
-        $("#mySearchBtn").on("click", function() {
+        $("#mySearchBtn").on("click", addSongToFirebase);
+        
+        function addSongToFirebase() {
 
-            console.log("Search button clicked");
+            console.log("Inside addSongToFirebase()");
 
             //Get song and artist from input boxes
             var inputSong = $("#song-input").val().trim();
@@ -91,7 +79,7 @@
             //Clear sond and artist input fields
             $("#song-input").val("");
             $("#artist-input").val("");
-        });
+        }
         
 
 
@@ -136,22 +124,41 @@
             $tdPlayBtn
                 .attr("keyData", songObj.songObjKey)
                 .attr("id", "playVideo")
+                .attr("data-toggle", "tooltip")
+                .attr("data-placement", "top")
+                .attr("title", "Play Video")
                 .html(`<i class="fas fa-play-circle"></i>`);
+
+            // var $tdCloseBtn = $("<td>");
+            // $tdCloseBtn
+            //     .attr("keyData", songObj.songObjKey)
+            //     .attr("id", "closeVideo")
+            //     .attr("data-toggle", "tooltip")
+            //     .attr("data-placement", "top")
+            //     .attr("title", "Close Video")
+            //     .html(`<i class="fas fa-window-close"></i>`);
 
             var $tdLyricsBtn = $("<td>");
             $tdLyricsBtn
                 .attr("keyData", songObj.songObjKey)
                 .attr("id", "lyrics")
+                .attr("data-toggle", "tooltip")
+                .attr("data-placement", "top")
+                .attr("title", "Show Lyrics")
                 .html(`<i class="fas fa-music"></i>`);
 
             var $tdRemoveBtn = $("<td>");
             $tdRemoveBtn
                 .attr("keyData", songObj.songObjKey)
                 .attr("id", "delete")
+                .attr("data-toggle", "tooltip")
+                .attr("data-placement", "top")
+                .attr("title", "Delete Song from Playlist")
                 .html(`<i class="far fa-trash-alt"></i>`);
 
 
             $tr.append($tdSongArtist, $tdPlayBtn, $tdLyricsBtn, $tdRemoveBtn);
+            // $tr.append($tdSongArtist, $tdPlayBtn, $tdCloseBtn, $tdLyricsBtn, $tdRemoveBtn);
 
             //lastly append entire table you created to $("tbody")
             $("tbody").prepend($tr);
@@ -174,10 +181,28 @@
             var keyVal = $(this).attr("keyData");
             console.log("keyVal to be played: " + keyVal);
 
+            //If user clicks the Play btn of same song that is already playing/open then do nothing
+            if(keyVal === currentVideoId) {
+                return;
+            }
+
+            //Store song id in the global variable 
+            currentVideoId = keyVal;
+
             var rootRef = database.ref().child(`${username}`);
             var dataRef = rootRef.child(`${keyVal}`);
-            dataRef.once("value", function(snapshot) {
-                
+            dataRef.once("value", function(snapshot) {          
+
+                $("<iframe>")
+                    .addClass("p-3")
+                    .attr("id", "youtubesearch")
+                    .attr("width","420")
+                    .attr("height", "345")
+                    .css("border-radius", "30px")
+                    .css("border", "5px solid brown")
+                    .appendTo($("#myVideo"));
+
+
                 //console.log(snapshot.val().song + " : "+ snapshot.val().artist);
                 //Call youtubeSearch() function with song and artist as inputs to play the video
                 youtubeSearch(snapshot.val().song, snapshot.val().artist);
@@ -259,10 +284,7 @@
                  //console.log(snapshot.val().song + " : "+ snapshot.val().artist);
 
                  //Call getLyrics function with song and artist as inputs to display the lyrics
-                 //Eg. youtubeSearch(snapshot.val().song, snapshot.val().artist);
-
-                 /* JAMES CODE TO BE CALLED HERE */
-
+                 searchLyrics(snapshot.val().song, snapshot.val().artist);
             });
 
         } //End of showSongLyrics()
@@ -273,7 +295,6 @@
          * different username/email-id 
          ************************************************************************************************/
        
-
         $("#myLogoutBtn").on("click", function() { 
 
             // Clear sessionStorage
@@ -284,6 +305,27 @@
 
             window.location.href = "../../index.html";
         });
+
+
+        /*************************************************************************************************
+         * OnClick event listner that triggers when user selects Recommended Music based on current weather
+         *************************************************************************************************/
+       
+        $("#getRecommendedWeatherSongs").on("click", function() {
+
+            // recommendedMusicByWeather();
+            addPlaylist();
+
+        });
+
+
+
+        //A custom script is used to activate tooltips:
+        $(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
 
 }); 
 //End of document ready
