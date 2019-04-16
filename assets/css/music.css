@@ -44,6 +44,10 @@ footer{
   padding-left: 20px;
 }
 
+.getByArtist {
+  border: 3px solid brown;
+  border-radius: 5px;
+}
 
 .card{
   background-color: rgba(192, 175, 131, 0.51);

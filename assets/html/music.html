@@ -60,8 +60,8 @@
                     <table class="table table-hover">
                         <thead>
                             <tr><th scope="col">
-                                <!-- <span id="playlistHeader"></span><span id="goToMyPlaylist"></span> -->
-                                <label id="goToMyPlaylist"></label><label id="playlistHeader"></label>
+                                <label id="playlistHeader"></label>
+                                <label id="goToMyPlaylist" class="float-right"></label>
                             </th></tr>
                         </thead>
                         <tbody>
@@ -104,31 +104,36 @@
                 <div id="weatherMood"></div>
                 <p id="weatherText">Weather</p>
             </div>
-    </footer>
-    <footer>
-            <!-- Div to populate recommended music based on various artists-->
-            <div class="row mt-3">
-                <div id="img" class="col">
-                    <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                    <img src="../image/beyonce.jpg" />
-                    </button>
 
-                </div>
-                <div id="img" class="col">
-                    <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                        <img src="../image/jlo.jpg" />
+    </footer>
+
+    <footer>
+        <div class="container-fluid">
+            <!-- Div to populate recommended music based on various artists-->
+
+            <div class="row justify-content-center mt-3">
+
+                <div class="col-2">
+                    <button type="submit" name="beyonce" class="getByArtist">
+                        <img src="../image/beyonce.jpg" width="100px" height="100px"/>
                     </button>
                 </div>
-                <div id="img" class="col">
-                    <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                        <img src="../image/ariana_grande.jpg" />
+                <div class="col-2">
+                    <button type="submit" name="JenniferLopez" class="getByArtist">
+                        <img src="../image/jlo.jpg" width="100px" height="100px"/>
                     </button>
                 </div>
-                <div id="img" class="col">
-                    <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                        <img src="../image/Sam-Smith-Normani.jpg" />
+                <div class="col-2">
+                    <button type="submit" name="ArianaGrande" class="getByArtist">
+                        <img src="../image/ariana_grande.jpg" width="100px" height="100px"/>
                     </button>
                 </div>
+                <div class="col-2">
+                    <button type="submit" name="michael-jackson" class="getByArtist">
+                        <img src="../image/MichaelJackson.jpg" width="100px" height="100px"/>
+                    </button>
+                </div>
+
             </div>
 
         </div>
@@ -156,6 +161,9 @@
 
     <!-- Link to RecMusicByWeather.js file to show recommended music based on weather -->
     <script src="../javascript/RecMusicByWeather.js"></script>
+
+    <!-- Link to RecVideoByArtist.js file to show recommended music based selected Artist -->
+    <script src="../javascript/RecVideosByArtist.js"></script>
 
     <!-- Link to music.js file -->
     <script type="text/javascript" src="../javascript/music.js"></script>

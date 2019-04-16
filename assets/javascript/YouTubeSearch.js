@@ -1,4 +1,18 @@
 
+  /************************************************************************************************
+  * variable that will store the playlist currently loaded and it's setter and getter methods
+  * This variable is declared in this file as this is the 1st js file loaded in music.html
+  ************************************************************************************************/
+  var currentPlaylistName = "My Playlist"; //Set to default
+
+  function setCurrentPlaylistName(val) {
+    currentPlaylistName = val;
+  }
+  function getCurrentPlaylistName() {
+    return currentPlaylistName;
+  }
+
+
     /************************************************************************************************
      * youtubeSearch()
      * Function that makes an ajax call to youtube api and gets the respose
@@ -21,6 +35,8 @@
 
       // https://www.googleapis.com/youtube/v3/search?part=snippet&q=coldplay&key=AIzaSyCM6nHLO1qSaQ6vXhIR60m7lnT2ufZeul4
       //https://www.googleapis.com/youtube/v3/search?part=snippet&q=paradise,coldplay&key=AIzaSyCM6nHLO1qSaQ6vXhIR60m7lnT2ufZeul4
+
+      // var queryURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${artist}&key=${APIKey}&type=video&videoCategoryId=10`;
 
 
       // Here we run our AJAX call to the YouTube API

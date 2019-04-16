@@ -21,6 +21,8 @@
     //Variable that hold song id of currently playing song
     var currentVideoId = "";
 
+    //Variable that holds true 
+    var songObjAlreadyAddedFlag = false;
     //------------------------------------------------------------------------------------------------------
 
     $(document).ready(function () {
@@ -38,7 +40,7 @@
 
         function addSongToFirebase() {
 
-            console.log("Inside addSongToFirebase()");
+            console.log("Inside addSongToFirebase() in music.js");
 
             //Get song and artist from input boxes
             var inputSong = $("#song-input").val().trim();
@@ -65,14 +67,20 @@
                 artist: inputArtist,
                 songObjKey: "" //Initially this key will be empty and will be populated on "database.ref().on("child_added".." event
             };
+//************************ */
+            // //Case: If user is in Recommended videos section and then searches for a song and clicks on Add to my playlist then run function to load user's playlist and add element to it
+            // if (getCurrentPlaylistName() !== "My Playlist") {
+            //     loadMyPlaylist();
+            // }
+//************************ */
+            // //If 'username' is present 'key' will reference to that obj else create an object whith name 'username'
+            // var rootRef = database.ref();
+            // var key = rootRef.child(`${username}`);
+            // console.log("key = " + key);
 
 
-            //If 'username' is present 'key' will reference to that obj else create an object whith name 'username'
-            var rootRef = database.ref();
-            var key = rootRef.child(`${username}`);
-            console.log("key = " + key);
-
-            // Store 'songObj' in username's playlist in firebase DB
+            // Store 'songObj' in username's playlist in firebase DB, 
+            //after which the control will go to "child-added" event
             database.ref(`/${username}`).push(songObj);
 
 
@@ -85,105 +93,127 @@
 
 
         /************************************************************************************************
-         * OnClick event listner that triggers only when a child is added and populates only data of that new child 
+         * OnClick event listner that triggers only when a child is added and populates only 
+         * data of that new child 
          ************************************************************************************************/
 
         database.ref(`/${username}`).on("child_added", childAddedEvent,
             // If any errors are experienced, log them to console.
             function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
-        });
+            });
 
         function childAddedEvent(childSnapshot) {
 
-            console.log("In childAddedEvent()");
-
-            //Apend string at the table header
-            $("#playlistHeader").text("My Playlist");
+            console.log("In childAddedEvent() in music.js");
 
             //Remove link that says "Go to my Playlist" as now the user will be shown his/her actual Playlist
             $("#goToMyPlaylist").empty();
 
-
-            console.log(childSnapshot.val());
+            //Apend string at the table header
+            $("#playlistHeader").text("My Playlist");
 
             //Get the Object (Key) of the songObj to be associated with Delete, Play, Close and lyrics button
             var objectName = childSnapshot.key;
             console.log("objectName: " + objectName);
 
+            //If user is currently in Recommended Playlist, then inside this child-added event load the user's
+            //playlist with new song added in it
+            if (getCurrentPlaylistName() !== "My Playlist") {
+
+                console.log("Calling loadMyPlaylist() from music.js");
+
+                songObjAlreadyAddedFlag = true;
+
+                //Also set the objects child "songObjKey" set to it for further reference
+                database.ref(`${username}/${objectName}/songObjKey`).set(objectName, loadMyPlaylist);
+                
+
+            }
+
+            //Check to se if songObjKey is already added for the new sond then do not add again
+            if(songObjAlreadyAddedFlag === true) {
+
+                console.log("songObjAlreadyAddedFlag: " + songObjAlreadyAddedFlag);
+                songObjAlreadyAddedFlag = false; //Reset flag
+                createTable(objectName);
+            }
 
             //Also set the objects child "songObjKey" set to it for further reference
-            database.ref(`${username}/${objectName}/songObjKey`).set(objectName, function () {
-
-                // query database for song info
-                database.ref(`${username}/${objectName}`).once("value", function (snapshot) {
-
-                    // console.log(snapshot.val());
-
-                    //Get all objects from DB
-                    var songObj = snapshot.val();
-
-                    console.log(songObj.song + " : " + songObj.artist + " : " + songObj.songObjKey);
-
-
-                    //------------------------------------ Create Table row --------------------------------------
-                    //create a table row 
-                    var $tr = $("<tr>");
-                    $tr
-                        .attr("keyData", songObj.songObjKey)
-                        .attr("id", "playVideo")
-                        .attr("data-toggle", "tooltip")
-                        .attr("data-placement", "top")
-                        .attr("title", "Play Video");
-
-
-                    //create <td> for the song & artist
-                    //add content from childSnapshot.val() to corresponding <td> tags
-                    var $tdSongArtist = $("<td>").text(songObj.song + ", " + songObj.artist);
-
-
-                    var $tdCloseBtn = $("<td>");
-                    $tdCloseBtn
-                        .attr("keyData", songObj.songObjKey)
-                        .attr("id", "closeVideo")
-                        .attr("data-toggle", "tooltip")
-                        .attr("data-placement", "top")
-                        .attr("title", "Close Video")
-                        .html(`<i class="fas fa-window-close"></i>`);
-
-
-                    var $tdLyricsBtn = $("<td>");
-                    $tdLyricsBtn
-                        .attr("keyData", songObj.songObjKey)
-                        .attr("id", "lyrics")
-                        .attr("data-toggle", "tooltip")
-                        .attr("data-placement", "top")
-                        .attr("title", "Show Lyrics")
-                        .html(`<i class="fas fa-music"></i>`);
-
-
-                    var $tdRemoveBtn = $("<td>");
-                    $tdRemoveBtn
-                        .attr("keyData", songObj.songObjKey)
-                        .attr("id", "delete")
-                        .attr("data-toggle", "tooltip")
-                        .attr("data-placement", "top")
-                        .attr("title", "Delete Song from Playlist")
-                        .html(`<i class="far fa-trash-alt"></i>`);
-
-
-                    $tr.append($tdSongArtist, $tdLyricsBtn, $tdCloseBtn, $tdRemoveBtn);
-                    // $tr.append($tdSongArtist, $tdPlayBtn, $tdCloseBtn, $tdLyricsBtn, $tdRemoveBtn);
-
-                    //lastly append entire table you created to $("tbody")
-                    $("tbody").prepend($tr);
-
-                })
-            });
+            database.ref(`${username}/${objectName}/songObjKey`).set(objectName, createTable(objectName));
 
 
         } //End of childAddedEvent(childSnapshot)
 
+        function createTable (objectName) {
+
+            console.log("In createTable() in music.js");
+
+             // query database for song info
+             database.ref(`${username}/${objectName}`).once("value", function (snapshot) {
+
+                // console.log(snapshot.val());
+
+                //Get all objects from DB
+                var songObj = snapshot.val();
+
+                console.log(songObj.song + " : " + songObj.artist + " : " + songObj.songObjKey);
+
+
+                //------------------------------------ Create Table row --------------------------------------
+                //create a table row 
+                var $tr = $("<tr>");
+
+                //create <td> for the song & artist
+                //add content from childSnapshot.val() to corresponding <td> tags
+                var $tdSongArtist = $("<td>").text(songObj.song + ", " + songObj.artist);
+                $tdSongArtist
+                    .attr("keyData", songObj.songObjKey)
+                    .attr("id", "playVideo")
+                    .attr("data-toggle", "tooltip")
+                    .attr("data-placement", "top")
+                    .attr("title", "Play Video");
+
+
+                var $tdCloseBtn = $("<td>");
+                $tdCloseBtn
+                    .attr("keyData", songObj.songObjKey)
+                    .attr("id", "closeVideo")
+                    .attr("data-toggle", "tooltip")
+                    .attr("data-placement", "top")
+                    .attr("title", "Close Video")
+                    .html(`<i class="fas fa-window-close"></i>`);
+
+
+                var $tdLyricsBtn = $("<td>");
+                $tdLyricsBtn
+                    .attr("keyData", songObj.songObjKey)
+                    .attr("id", "lyrics")
+                    .attr("data-toggle", "tooltip")
+                    .attr("data-placement", "top")
+                    .attr("title", "Show Lyrics")
+                    .html(`<i class="fas fa-music"></i>`);
+
+
+                var $tdRemoveBtn = $("<td>");
+                $tdRemoveBtn
+                    .attr("keyData", songObj.songObjKey)
+                    .attr("id", "delete")
+                    .attr("data-toggle", "tooltip")
+                    .attr("data-placement", "top")
+                    .attr("title", "Delete Song from Playlist")
+                    .html(`<i class="far fa-trash-alt"></i>`);
+
+
+                $tr.append($tdSongArtist, $tdLyricsBtn, $tdCloseBtn, $tdRemoveBtn);
+                // $tr.append($tdSongArtist, $tdPlayBtn, $tdCloseBtn, $tdLyricsBtn, $tdRemoveBtn);
+
+                //lastly append entire table you created to $("tbody")
+                $("tbody").prepend($tr);
+
+            });
+
+        } //End of createTable()
 
         /************************************************************************************************
          * OnClick event listner that triggers only when user wants to Play video of the song selected 
@@ -194,7 +224,7 @@
 
         function playVideo(event) {
 
-            console.log("Inside playVideo event");
+            console.log("Inside playVideo event in music.js");
 
             //Variable to store key value
             var keyVal = $(this).attr("keyData");
@@ -205,15 +235,27 @@
                 return;
             }
 
-            //
-            $("#myVideo").empty();
-
             //Store song id in the global variable 
             currentVideoId = keyVal;
 
-            var rootRef = database.ref().child(`${username}`);
-            var dataRef = rootRef.child(`${keyVal}`);
-            dataRef.once("value", function (snapshot) {
+            //Empty the video div just incase any is open
+            $("#myVideo").empty();
+
+            var rootRef = "";
+            //If playlistHeader does not mention "My Playlist", that is user is trying 
+            //to populate Recommended videos then path of firebase will not include 'username'
+            if ($("#playlistHeader").text() !== "My Playlist") {
+                rootRef = getCurrentPlaylistName();
+            } else {
+                rootRef = username;
+            }
+            console.log("rootRef: " + rootRef);
+            console.log(keyVal);
+            //User wants to play video from his Playlist
+            database.ref(`${rootRef}/${keyVal}`).once("value", function (snapshot) {
+                console.log("reached here");
+                console.log(snapshot.val());
+                console.log(snapshot.val().song + " : " + snapshot.val().artist);
 
                 $("<iframe>")
                     .addClass("p-3")
@@ -225,10 +267,10 @@
                     .appendTo($("#myVideo"));
 
 
-                //console.log(snapshot.val().song + " : "+ snapshot.val().artist);
                 //Call youtubeSearch() function with song and artist as inputs to play the video
                 youtubeSearch(snapshot.val().song, snapshot.val().artist);
             });
+
 
         } //End of playVideo()
 
@@ -241,7 +283,7 @@
 
         function deleteSongData(event) {
 
-            console.log("Inside deleteSongData()");
+            console.log("Inside deleteSongData() in music.js");
 
             //Variable to store key value
             var keyVal = $(this).attr("keyData");
@@ -292,15 +334,24 @@
 
         function showSongLyrics(event) {
 
-            console.log("Inside showSongLyrics()");
+            console.log("Inside showSongLyrics() in music.js");
 
             //Variable to store key value
             var keyVal = $(this).attr("keyData");
             console.log("keyVal used to get lyrics: " + keyVal);
 
-            var rootRef = database.ref().child(`${username}`);
-            var dataRef = rootRef.child(`${keyVal}`);
-            dataRef.once("value", function (snapshot) {
+            var rootRef = "";
+            //If playlistHeader does not mention "My Playlist", that is user is trying 
+            //to populate Recommended videos then path of firebase will not include 'username'
+            if ($("#playlistHeader").text() !== "My Playlist") {
+                rootRef = getCurrentPlaylistName();
+            } else {
+                rootRef = username;
+            }
+
+            //User wants to play video from his Playlist
+            database.ref(`${rootRef}/${keyVal}`).once("value", function (snapshot) {
+
                 // console.log(snapshot.val());
                 console.log("Calling searchLyrics() from lyrics.js");
                 console.log(snapshot.val().song + " : " + snapshot.val().artist);
@@ -311,6 +362,31 @@
 
         } //End of showSongLyrics()
 
+        /************************************************************************************************
+         * OnClick event listner that triggers when user wants to close the video panel
+         ************************************************************************************************/
+
+        // Set up event listener for Close video btn 
+        $("tbody").on("click", "#closeVideo", function () {
+
+            console.log("Inside closeVideo onClick function in music.js");
+
+            //Remove currently played video div
+            $("#myVideo").empty();
+
+        }); //End of closeVideo onClick function
+
+
+        /*************************************************************************************************
+         * OnClick event listner that triggers when user selects Recommended Music based on current weather
+         *************************************************************************************************/
+
+        $("#getRecommendedWeatherSongs").on("click", function () {
+
+            console.log("Inside getRecommendedWeatherSongs onClick function in music.js");
+            recommendedMusicByWeather();
+
+        });
 
         /************************************************************************************************
          * OnClick event listner that triggers when user wants to logout and signup using 
@@ -319,6 +395,7 @@
 
         $("#myLogoutBtn").on("click", function () {
 
+            console.log("Inside myLogoutBtn onClick function in music.js");
             // Clear sessionStorage
             sessionStorage.clear();
 
@@ -330,23 +407,12 @@
 
 
         /*************************************************************************************************
-         * OnClick event listner that triggers when user selects Recommended Music based on current weather
+         * A custom script is used to activate tooltips
          *************************************************************************************************/
 
-        $("#getRecommendedWeatherSongs").on("click", function () {
-
-            // addPlaylist();
-            recommendedMusicByWeather();
-
-        });
-
-
-
-        //A custom script is used to activate tooltips:
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
 
 
     });
