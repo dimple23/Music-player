@@ -3,8 +3,8 @@ var username = sessionStorage.getItem("username");
 console.log("Username in RecMusicByWeather.js from sessionstorage-> " + username);
 
 //Creating global variable to store geographical co-ordinates
-var latitude = "";
-var longitude = "";
+var latitude = 40;
+var longitude = 74;
 var flagLocationNotFound = false;
 
 /************************************************************************************************
@@ -130,7 +130,7 @@ function getGeolocationOfTheUser() {
     console.log("Inside getGeolocationOfTheUser()");
 
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
         console.log("Geolocation is not supported by this browser.");
         flagLocationNotFound = true;
@@ -146,6 +146,26 @@ function showPosition(position) {
     longitude = position.coords.longitude;
 }
 
+function showError(error) {
+
+    //Turn on flag to say that location is not found continue with default values
+    flagLocationNotFound = true;
+    
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        x.innerHTML = "User denied the request for Geolocation."
+        break;
+      case error.POSITION_UNAVAILABLE:
+        x.innerHTML = "Location information is unavailable."
+        break;
+      case error.TIMEOUT:
+        x.innerHTML = "The request to get user location timed out."
+        break;
+      case error.UNKNOWN_ERROR:
+        x.innerHTML = "An unknown error occurred."
+        break;
+    }
+  }
 /************************************************************************************************
  * recommendedMusicByWeather()
  * Function that makes an ajax call to weather api and gets the respose
@@ -164,29 +184,27 @@ function recommendedMusicByWeather() {
     var cityState = "Somerset,New Jersey";
     // var cityState = "Fremont,California";
 
-    var queryURL = "";
 
     //Get geographical co-ordinates
     getGeolocationOfTheUser();
 
     //If loaction is not found then by default get weather data for "Sommerset, New Jersey" 
-    if(flagLocationNotFound === true) {
+    if (flagLocationNotFound === true) {
 
         flagLocationNotFound = false; //Reset flag
 
-        // Here we are building the URL we need to query the database
-        //https://api.openweathermap.org/data/2.5/weather?q=Somerset,New Jersey&appid=166a433c57516f51dfab1f7edaed8413
-        queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityState}&appid=${APIKey}`;
-
+        //default values set to that of "Somerset,New Jersey"
+        latitude = 40; 
+        longitude = 74;
     }
-    //If loaction is found then use latitude and longitude values to get current weather
-    else {
-        
-        // Here we are building the URL we need to query the database
-        //https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=166a433c57516f51dfab1f7edaed8413
-        queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKey}`;
 
-    }
+    // Here we are building the URL we need to query the database
+    //https://api.openweathermap.org/data/2.5/weather?q=Somerset,New Jersey&appid=166a433c57516f51dfab1f7edaed8413
+    // queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityState}&appid=${APIKey}`;
+
+
+    //https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=166a433c57516f51dfab1f7edaed8413
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIKey}`;
     
     console.log("queryURL: " + queryURL);
 

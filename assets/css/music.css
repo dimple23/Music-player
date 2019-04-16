@@ -55,6 +55,7 @@ body{
  .leftcolumn{
   float: left;
   width: 90%;
+  height: 80%;
  }
  
  .rightcolumn{
@@ -82,7 +83,7 @@ body{
  #WeatherButton{
   border-radius: 30px;
   height: 70px;
-  width: 90%;
+  width: 100%;
   background-color: rgba(219, 157, 13, 0.918);
   color:brown;
  }
@@ -92,24 +93,25 @@ body{
 
  #playlistCard{
   border-radius: 30px;
-  max-height:500px;
+  max-height:800px;
   background-color: rgba(233, 185, 64, 0.384);
   color:brown;
 
  }
  .scroll {
-  max-height: 200px;
+  max-height: 800px;
   overflow-y: auto;
 }
 tbody {
-  height: 700px !important;
+  height: 800px !important;
   overflow: scroll;
   display:block;
+  width: 100%;
 } 
 .scrollLyrics{
-  max-height: 450px;
+  max-height: 400px;
   overflow-y: auto;
-  height: 450px !important;
+  height: 400px !important;
   overflow: scroll;
   display:block;
 }

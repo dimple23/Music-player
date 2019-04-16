@@ -261,8 +261,8 @@ $(document).ready(function () {
             $("<iframe>")
                 .addClass("p-3")
                 .attr("id", "youtubesearch")
-                .attr("width", "420")
-                .attr("height", "345")
+                .attr("width", "650")
+                .attr("height", "400")
                 .css("border-radius", "30px")
                 .css("border", "5px solid brown")
                 .appendTo($("#myVideo"));

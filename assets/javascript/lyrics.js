@@ -18,16 +18,18 @@ function searchLyrics(song, artist) {
                     .css("background-color","rgba(235, 179, 38, 0.726")
                     .css("color","black")
                     .css("font-size","18px")
+                    .css("border-radius", "30px")
+                    .css("border", "5px solid brown")
+                    .css("width","700")
+                    .css("height","300")
                   
 
     var $loadingGif = $("<img>");
     $loadingGif
                   .attr("id", "loadGif")
                   .attr("src", "../image/loading.gif")
-                  .attr("width", "420")
-                  .attr("height", "345")
-                  .css("border-radius", "30px")
-                  .css("border", "5px brown")
+                  .attr("width", "700")
+                  .attr("height", "350")                
                   .appendTo($("#showLyrics"));
   
     //Create <p> tag to append lyrics or error message to it
@@ -67,10 +69,8 @@ function searchLyrics(song, artist) {
                 $addText
                 .text(lyricsResp.lyrics)
                 .attr("src", "../image/loading.gif")
-                  .attr("width", "420")
-                  .attr("height", "345")
-                  .css("border-radius", "5px")
-                  .css("border", "#CA5310")
+                  .attr("width", "700")
+                  .attr("height", "350")
                   .css("pdding","20px")
                   .css("margin","20px")
                   .appendTo($("#showLyrics"));
