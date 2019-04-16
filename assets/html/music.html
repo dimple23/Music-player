@@ -44,7 +44,7 @@
               
     </header>
       
-    <!-- ------------------------------------------------------------------------------------------ -->
+    <!-- ----------------------------------------PLAYLIST added----------------------------------------- -->
     
     <main class="row container-fluid">
 
@@ -61,7 +61,10 @@
 
                     <table class="table table-hover table-striped">
                         <thead>
-                            <tr><th scope="col"><h1>Video Playlist</h1></th></tr>
+                            <tr><th scope="col">
+                                <label id="playlistHeader"></label>
+                                <label id="goToMyPlaylist" class="float-right"></label>
+                            </th></tr>
                         </thead>
                         <tbody>
                             <!-- content will be written in music.js file -->
@@ -100,55 +103,54 @@
         </div>
 
     </main>
-    
 
-    <!-- ------------------------------------------------------------------------------------------ -->
-    <br><br><br><br><br><br><br><br>
-  
-    <footer class="container-fluid p-3 " id="Weatherfooter">
-        <div class=" musicPlayerCard" id="getRecommendedWeatherSongs">
-            <button id="WeatherButton"><h2>Weather Mood</h2>
-            <div id="weatherMood"></div>
-            <p id="weatherText">Weather</p></button>
-        </div><br><br>
-        <div class="row">
-            <div id="img" class="col-sm-2">
-                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
+    <!-- ----------------------------------FOOTER - RECOMMENDED MUSIC-------------------------------- -->
 
-                <img src="beyonce.jpg" />
-                </button>
+    <footer>
+        <div class="container-fluid">
 
+            <!-- Div to populate recommended music based on weather -->
+            <div class="card musicPlayerCard" id="getRecommendedWeatherSongs">
+                <h2>Weather Mood</h2>
+                <div id="weatherMood"></div>
+                <p id="weatherText">Weather</p>
             </div>
-            <div id="img" class="col-sm-2">
-                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                    <img src="jlo.jpg" />
-                </button>
-            </div>
-            <div id="img" class="col-sm-2">
-                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                    <img src="ariana_grande.jpg" />
-                </button>
-            </div>
-            <div id="img" class="col-sm-2">
-                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                    <img src="Sam-Smith-Normani.jpg" />
-                </button>
-            </div>
-            <div id="img" class="col-sm-2">
-                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
 
-                    <img src="beyonce.jpg" />
-                </button>
-
-            </div>
-            <div id="img" class="col-sm-2">
-                <button type="submit" name="artists-img" value="artists-img_btn_was_clicked">
-                    <img src="jlo.jpg" />
-                </button>
-            </div>
     </footer>
 
+    <footer>
+        <div class="container-fluid">
+            <!-- Div to populate recommended music based on various artists-->
 
+            <div class="row mt-3">
+
+                <div class="col">
+                    <button type="submit" name="beyonce" class="getByArtist">
+                        <img src="../image/beyonce.jpg" width="200px" height="200px"/>
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="submit" name="JenniferLopez" class="getByArtist">
+                        <img src="../image/jlo.jpg" width="200px" height="200px"/>
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="submit" name="ArianaGrande" class="getByArtist">
+                        <img src="../image/ariana_grande.jpg" width="200px" height="200px"/>
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="submit" name="michael-jackson" class="getByArtist">
+                        <img src="../image/MichaelJackson.jpg" width="200px" height="200px"/>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+     <!-- ---------------------------------------------------------------------------------------------- -->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -162,14 +164,17 @@
     <!-- Link to app.js file to access "username" -->
     <script type="text/javascript" src="../javascript/app.js"></script>
 
+    <!-- Link to lyrics.js file to show lyrics video -->
+    <script src="../javascript/lyrics.js"></script>
+    
     <!-- Link to YouTubeSearch.js file to show youtube video -->
     <script src="../javascript/YouTubeSearch.js"></script>
 
-    <!-- Link to lyrics.js file to show lyrics video -->
-    <script src="../javascript/lyrics.js"></script>
-
     <!-- Link to RecMusicByWeather.js file to show recommended music based on weather -->
     <script src="../javascript/RecMusicByWeather.js"></script>
+
+    <!-- Link to RecVideoByArtist.js file to show recommended music based selected Artist -->
+    <script src="../javascript/RecVideosByArtist.js"></script>
 
     <!-- Link to music.js file -->
     <script type="text/javascript" src="../javascript/music.js"></script>

@@ -17,6 +17,7 @@ body{
  }
  
  footer{
+  width: 100%;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -62,6 +63,10 @@ body{
   padding-left: 20px;
  }
  
+.getByArtist {
+ border: 3px solid brown;
+ border-radius: 5px;
+}
  
  .card{
   padding: 20px;

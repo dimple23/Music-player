@@ -6,7 +6,7 @@ var username = "";
 $(document).ready(function () {
 
    // set up event listener for form submit to capture username/email-id
-   $("#username-form").on("submit", function(event) {
+   $("#username-form").on("submit", function (event) {
        event.preventDefault();
 
        var username = $("#name-input").val().trim();
@@ -14,12 +14,11 @@ $(document).ready(function () {
        console.log("Playlist requested by: " + username);
 
        //If username entered by the user is an empty string
-       if(username === "") {
+       if (username === "") {
            $("#alertLabel")
                .text("Please enter your Username / Email-Id !!!")
                .css("color", "red");
-       }
-       else  {
+       } else {
            //Store username for this session
 
            // Clear sessionStorage
@@ -34,4 +33,3 @@ $(document).ready(function () {
    });
 
 });
-
