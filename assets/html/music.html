@@ -15,25 +15,27 @@
 <body>
 
     <header class="container-fluid p-3">
-
+           
         <div class="row">
-            <div class="col-2" >
-                <button id="appIcon" class="btn btn-block p-2" type="submit">
-                    <h2><strong>Mu.Vu.Tv</strong></h2>
-                </button>
-            </div>
-            <div class="col-3">
+                <div class="col-2"> 
+                <img src="../image/lototext.png">
+                <!---<button id="appIcon" class="btn btn-block p-2" type="submit">--->
+                         </div>   
+              
+            <div class="col-2">
                 <input id="song-input" class="form-control p-4" type="text" placeholder="Search Song*"/>
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <input id="artist-input" class="form-control p-4" type="text" placeholder="Search Artist*"/>
             </div>
-            <div class="col-1">
-                <button id="mySearchBtn" class="btn btn-block p-2" type="submit"><strong>Search</strong></button>
-            </div>
             <div class="col-3">
+                <button id="mySearchBtn" class="btn btn-block p-2" type="submit"><strong>Go to Playlist</strong></button>
+            </div>
+           
+            <div class="col-3">
+                    
                 <button id="myLogoutBtn" class="btn btn-block p-2" type="submit">
-                    <strong><span id="username-text"></span></strong>
+                    <strong> <span id="username-text"></span></strong>
                     <br>
                     Logout
                 </button>
@@ -46,12 +48,12 @@
     
     <main class="row container-fluid">
 
-        <div class="col-5 leftcolumn">
+        <div class="col-6 leftcolumn">
         <!-- Start left column Div -->
 
             <div class="card my-4 scroll " id="playlistCard">
 
-                <img class="card-header card-img-top musicCardImage" src="../image/musiccard6.gif" alt="musicplaylist" height="150px">
+                <img class="card-header card-img-top musicCardImage" src="../image/musiccard6.gif" alt="musicplaylist" height="200px">
 
                 <div class="card-body">
                     <!-- <h5 class="card-title"></h5> -->
@@ -87,7 +89,11 @@
             </div>
 
             <div class="row">
-                <div class="p-3 lyricPlayerCard" id="showLyrics"></div>
+                <div class="  p-3 lyricPlayerCard  lyricsimg scrollLyrics" id="showLyrics" >
+                    <div class=" border-warning mb-3" id="showLyrics" style="max-width: 18rem;">
+                        
+                        
+                </div>
             </div>
 
         <!-- End of 'rightcolumn' div  -->

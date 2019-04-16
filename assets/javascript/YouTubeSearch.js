@@ -1,4 +1,4 @@
-/ $(document).ready(function () {
+ $(document).ready(function () {
 
   //     youtubeSearch(song, artist);
  
@@ -55,3 +55,4 @@
  
     });
  }
+});

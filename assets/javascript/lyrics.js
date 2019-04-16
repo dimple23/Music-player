@@ -14,7 +14,12 @@ function searchLyrics(song, artist) {
     console.log(queryURL);
 
     //Add a loading Gif in the container until the lyrics are displayed
-        
+              $(".lyricsimg")
+                    .css("background-color","rgba(235, 179, 38, 0.726")
+                    .css("color","black")
+                    .css("font-size","18px")
+                  
+
     var $loadingGif = $("<img>");
     $loadingGif
                   .attr("id", "loadGif")
@@ -22,11 +27,11 @@ function searchLyrics(song, artist) {
                   .attr("width", "420")
                   .attr("height", "345")
                   .css("border-radius", "30px")
-                  .css("border", "5px solid brown")
+                  .css("border", "5px brown")
                   .appendTo($("#showLyrics"));
   
     //Create <p> tag to append lyrics or error message to it
-    var $addText = $("<p>");
+    var $addText = $("<pre>");
 
     $.ajax({
         url: queryURL,
@@ -47,6 +52,7 @@ function searchLyrics(song, artist) {
               $("#loadGif").remove();
 
                 $addText
+                  
                   .text("Lyrics Not Found!!!")
                   .appendTo($("#showLyrics"));
 
@@ -57,9 +63,17 @@ function searchLyrics(song, artist) {
                 $("#loadGif").remove();
 
                 //If lyrics is found
+                
                 $addText
                 .text(lyricsResp.lyrics)
-                .appendTo($("#showLyrics"));
+                .attr("src", "../image/loading.gif")
+                  .attr("width", "420")
+                  .attr("height", "345")
+                  .css("border-radius", "5px")
+                  .css("border", "#CA5310")
+                  .css("pdding","20px")
+                  .css("margin","20px")
+                  .appendTo($("#showLyrics"));
             }
 
         },
@@ -72,8 +86,9 @@ function searchLyrics(song, artist) {
 
             //In case of error show text
             $addText
-                  .text("Lyrics Not Found!!!")
-                  .appendTo($("#showLyrics"));
+                
+                .text("Lyrics Not Found!!!")
+                .appendTo($("#showLyrics"));
         }
     });
 

@@ -10,8 +10,9 @@ body{
  
  header {
   /* padding : 30px; */
-  text-align: center;
+  text-align:center;
   background-color: rgba(192, 175, 131, 0.51);
+  background-image: url(../image/header.gif);
   border-radius: 10px;
  }
  
@@ -24,13 +25,22 @@ body{
  }
  
  #song-input, #artist-input {
-  border: 5px solid brown;
+  color: brown;
   border-radius: 30px;
   height: 70px;
+
+  
+ }
+ #mySearchBtn{
+   width: 80%;
+   background-color: rgba(187, 78, 0, 0.589);
+ }
+ #myLogoutBtn{
+   width: 60%;
  }
  
- #appIcon, #myLogoutBtn, #mySearchBtn {
-  background-color: brown;
+  #myLogoutBtn, #mySearchBtn {
+  background-color:rgba(187, 78, 0, 0.589);
   color: whitesmoke;
   border-radius: 30px;
   height: 70px;
@@ -43,7 +53,7 @@ body{
  
  .leftcolumn{
   float: left;
-  width: 50%;
+  width: 90%;
  }
  
  .rightcolumn{
@@ -57,11 +67,9 @@ body{
   padding: 20px;
   margin-top: 20px;
   color: brown;
-  background-color:rgba(192, 175, 131, 0.51);
+  background-color:rgba(114, 103, 74, 0.51);
  } 
- .lyricsimg{
-    background-image: url(../image/lyrics.jpg);
- }
+ 
  
  .videocard{
   height: 60%;
@@ -85,14 +93,22 @@ body{
 
  }
  .scroll {
-  max-height: 100px;
+  max-height: 200px;
   overflow-y: auto;
 }
 tbody {
-  height: 500px !important;
+  height: 700px !important;
   overflow: scroll;
   display:block;
 } 
+.scrollLyrics{
+  max-height: 450px;
+  overflow-y: auto;
+  height: 450px !important;
+  overflow: scroll;
+  display:block;
+}
+
 
  @media screen and (max-width: 800px) {
   .leftcolumn, .rightcolumn {
