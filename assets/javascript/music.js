@@ -140,8 +140,9 @@ $(document).ready(function () {
         }
 
         //Also set the objects child "songObjKey" set to it for further reference
-        database.ref(`${username}/${objectName}/songObjKey`).set(objectName, createTable(objectName));
-
+        database.ref(`${username}/${objectName}/songObjKey`).set(objectName, function() {
+            createTable(objectName);
+        });
 
     } //End of childAddedEvent(childSnapshot)
 

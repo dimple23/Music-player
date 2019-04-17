@@ -107,19 +107,19 @@ footer {
 
 #playlistCard {
   border-radius: 30px;
-  max-height: 500px;
+  max-height: 800px;
   background-color: rgba(233, 185, 64, 0.384);
   color: brown;
 
 }
 
 .scroll {
-  max-height: 200px;
+  max-height: 700px;
   overflow-y: auto;
 }
 
 tbody {
-  height: 700px !important;
+  height: 800px !important;
   overflow: scroll;
   display: block;
 }

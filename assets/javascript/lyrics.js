@@ -19,15 +19,16 @@ function searchLyrics(song, artist) {
   $(".lyricsimg")
     .css("background-color", "rgba(235, 179, 38, 0.726")
     .css("color", "black")
-    .css("font-size", "18px");
+    .css("font-size", "18px")
+    .css("border-radius", "30px");
 
 
   var $loadingGif = $("<img>");
   $loadingGif
     .attr("id", "loadGif")
     .attr("src", "../image/loading.gif")
-    .attr("width", "420")
-    .attr("height", "345")
+    .attr("width", "500")
+    .attr("height", "350")
     .css("border-radius", "30px")
     .css("border", "5px brown")
     .appendTo($("#showLyrics"));
@@ -67,10 +68,10 @@ function searchLyrics(song, artist) {
         $addText
           .text(lyricsResp.lyrics)
           .attr("src", "../image/loading.gif")
-          .attr("width", "420")
-          .attr("height", "345")
-          .css("border-radius", "5px")
-          .css("border", "#CA5310")
+          .attr("width", "500")
+          .attr("height", "300")
+          .css("border-radius", "10px")
+    .css("border", "5px brown")
           .css("pdding", "20px")
           .css("margin", "20px")
           .appendTo($("#showLyrics"));
