@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
+<!-- Ling to the Google fonts file -->
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+<!-- Ling to the CSS file -->
 <link rel="stylesheet" href="../css/music.css">
 
 
@@ -29,7 +33,7 @@
                 <input id="artist-input" class="form-control p-4" type="text" placeholder="Search Artist*"/>
             </div>
             <div class="col-3">
-                <button id="mySearchBtn" class="btn btn-block p-2" type="submit"><strong>Go to Playlist</strong></button>
+                <button id="mySearchBtn" class="btn btn-block p-2" type="submit"><strong>Add to Playlist</strong></button>
             </div>
            
             <div class="col-3">
@@ -53,7 +57,7 @@
 
             <div class="card my-4 scroll " id="playlistCard">
 
-                <img class="card-header card-img-top musicCardImage" src="../image/musiccard6.gif" alt="musicplaylist" height="200px">
+                <img class="card-header card-img-top musicCardImage" src="../image/musiccard6.gif" alt="musicplaylist" height="150px">
 
                 <div class="card-body">
                     <!-- <h5 class="card-title"></h5> -->
@@ -92,10 +96,8 @@
             </div>
 
             <div class="row">
-                <div class="  p-3 lyricPlayerCard  lyricsimg scrollLyrics" id="showLyrics" >
+                <div class="p-3 lyricPlayerCard lyricsimg scrollLyrics" id="showLyrics" >
                     <div class=" border-warning mb-3" id="showLyrics" style="max-width: 18rem;">
-                        
-                        
                 </div>
             </div>
 
@@ -106,17 +108,13 @@
 
     <!-- ----------------------------------FOOTER - RECOMMENDED MUSIC-------------------------------- -->
 
-    <footer>
-        <div class="container-fluid">
 
-            <!-- Div to populate recommended music based on weather -->
-            <button id="WeatherButton">
-            <div class=" musicPlayerCard " id="getRecommendedWeatherSongs">
-                <h2>Weather Mood</h2>
-                <div id="weatherMood"></div>
-                <p id="weatherText">Weather</p>
-            </div>
-</button>
+    <footer class="mt-5">
+        <!-- Div to populate recommended music based on weather -->
+        <button class="d-flex align-items-center musicPlayerCard" id="getRecommendedWeatherSongs">
+            <img id="weatherMood"></img>
+        </button>
+        <h4 class="text-center text-light m-3"><strong>Recommended Music by Weather</strong></h4>
     </footer>
 
     <footer>
@@ -127,28 +125,29 @@
 
                 <div class="col-2">
                     <button type="submit" name="beyonce" class="getByArtist">
-                        <img src="../image/beyonce.jpg" width="150px" height="150px"/>
+                        <img src="../image/beyonce.jpg" width="150px" height="150px" data-toggle="tooltip" data-placement="top" title="Fan of Beyoncé"/>
                     </button>
                 </div>
                 <div class="col-2">
                     <button type="submit" name="JenniferLopez" class="getByArtist">
-                        <img src="../image/jlo.jpg" width="150px" height="150px"/>
+                        <img src="../image/jlo.jpg" width="150px" height="150px" data-toggle="tooltip" data-placement="top" title="Fan of JenniferLopez"/>
                     </button>
                 </div>
                 <div class="col-2">
                     <button type="submit" name="ArianaGrande" class="getByArtist">
-                        <img src="../image/ariana_grande.jpg" width="150px" height="150px"/>
+                        <img src="../image/ariana_grande.jpg" width="150px" height="150px" data-toggle="tooltip" data-placement="top" title="Fan of Ariana Grande"/>
                     </button>
                 </div>
                 <div class="col-2">
                     <button type="submit" name="michael-jackson" class="getByArtist">
-                        <img src="../image/MichaelJackson.jpg" width="150px" height="150px"/>
+                        <img src="../image/MichaelJackson.jpg" width="150px" height="150px" data-toggle="tooltip" data-placement="top" title="Fan of Michael Jackson"/>
                     </button>
                 </div>
 
             </div>
 
         </div>
+        <h4 class="text-center text-light m-3"><strong>Recommended Music by Artist</strong></h4>
     </footer>
 
      <!-- ---------------------------------------------------------------------------------------------- -->
@@ -184,3 +183,4 @@
 
 </body>
 </html>
+

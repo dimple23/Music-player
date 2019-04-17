@@ -1,125 +1,143 @@
-body{
+body {
   padding: 20px;
   background-image: url("../image/bgMainPage2.jpg");
- }
- h1{
-   color: rgb(209, 209, 72);
-   font-family: 'Berkshire Swash', cursive;
+  font-family: 'Rubik', sans-serif;
+}
 
- }
- 
- header {
-  /* padding : 30px; */
-  text-align:center;
+h1 {
+  color: rgb(209, 209, 72);
+  font-family: 'Berkshire Swash', cursive;
+
+}
+
+header {
+  text-align: center;
   background-color: rgba(192, 175, 131, 0.51);
   background-image: url(../image/header.gif);
   border-radius: 10px;
- }
- 
- footer{
-  width: 100%;
+}
+
+footer {
   padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  background-color: rgba(192, 175, 131, 0.51);
-  margin-top:20px;
- }
- 
- #song-input, #artist-input {
+  margin-top: 20px;
+}
+
+#song-input,
+#artist-input {
   color: brown;
   border-radius: 30px;
   height: 70px;
+}
 
-  
- }
- #mySearchBtn{
-   width: 80%;
-   background-color: rgba(187, 78, 0, 0.589);
- }
- #myLogoutBtn{
-   width: 60%;
- }
- 
-  #myLogoutBtn, #mySearchBtn {
-  background-color:rgba(187, 78, 0, 0.589);
+.recLabel {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.getByArtist,
+.musicPlayerCard {
+  background-color: 3px solid rgba(187, 78, 0, 0.589);
+  box-shadow: 0 0 5px 10px rgba(187, 78, 0, 0.589);
+  margin: 0 auto;
+}
+
+#mySearchBtn {
+  width: 80%;
+  background-color: rgba(187, 78, 0, 0.589);
+}
+
+#myLogoutBtn {
+  width: 60%;
+}
+
+#myLogoutBtn,
+#mySearchBtn {
+  background-color: rgba(187, 78, 0, 0.589);
   color: whitesmoke;
   border-radius: 30px;
   height: 70px;
- }
- #Weatherfooter{
-   float: bottom;
-   margin-bottom:20px;
-  
- }
- 
- .leftcolumn{
+}
+
+#Weatherfooter {
+  float: bottom;
+  margin-bottom: 20px;
+
+}
+
+.leftcolumn {
   float: left;
   width: 90%;
-  height: 80%;
- }
- 
- .rightcolumn{
+}
+
+.rightcolumn {
   float: right;
   width: 45%;
   padding-left: 20px;
- }
- 
-.getByArtist {
- border: 3px solid brown;
- border-radius: 5px;
 }
- 
- .card{
+
+.getByArtist {
+  border: 3px solid brown;
+  border-radius: 5px;
+}
+
+.card {
   padding: 20px;
   margin-top: 20px;
   color: brown;
-  background-color:rgba(114, 103, 74, 0.51);
- } 
- 
- 
- .videocard{
+  background-color: rgba(114, 103, 74, 0.51);
+}
+
+
+.videocard {
   height: 60%;
- }
- #WeatherButton{
+}
+
+#WeatherButton {
   border-radius: 30px;
   height: 70px;
-  width: 100%;
+  width: 90%;
   background-color: rgba(219, 157, 13, 0.918);
-  color:brown;
- }
- #lyrics{
-   float: right;
- }
+  color: brown;
+}
 
- #playlistCard{
+#lyrics {
+  float: right;
+}
+
+#playlistCard {
   border-radius: 30px;
-  max-height:800px;
+  max-height: 500px;
   background-color: rgba(233, 185, 64, 0.384);
-  color:brown;
+  color: brown;
 
- }
- .scroll {
-  max-height: 800px;
+}
+
+.scroll {
+  max-height: 200px;
   overflow-y: auto;
 }
+
 tbody {
-  height: 800px !important;
+  height: 700px !important;
   overflow: scroll;
-  display:block;
-  width: 100%;
-} 
-.scrollLyrics{
-  max-height: 400px;
+  display: block;
+}
+
+.scrollLyrics {
+  max-height: 450px;
   overflow-y: auto;
-  height: 400px !important;
+  height: 450px !important;
   overflow: scroll;
-  display:block;
+  display: block;
 }
 
 
- @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {
+@media screen and (max-width: 800px) {
+
+  .leftcolumn,
+  .rightcolumn {
     width: 100%;
     padding: 0;
   }
- }
+}

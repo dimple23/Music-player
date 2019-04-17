@@ -11,7 +11,16 @@ console.log("Username in RecVideosByArtist.js from sessionstorage-> " + username
 
 $(".getByArtist").on("click", function () {
 
-    console.log("Inside #recVideosOfArtists.onClick()");
+    console.log("Inside #recVideosOfArtists.onClick() in RecVideosByArtist.js");
+
+    //Remove currently played video div
+    $("#myVideo").empty();
+
+    //Reset lyrics div
+    $(".lyricsimg")
+        .css("background-color", "transparent");
+    $(".lyricsimg").empty();
+    $("#showLyrics").empty();
 
     //Get the artist name from the "name" attribute of the artist's image clicked
     var artistName = ($(this).attr("name"));
